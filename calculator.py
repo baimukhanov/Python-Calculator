@@ -43,13 +43,12 @@ def execution(token):
     nums = []
     ops = []
     i = 0
-
     while i < len(token):
         t = token[i]
 
         if t == '(':
             ops.append(t)
-        if t.isdigit():
+        if t.replace('.','', 1).isdigit():
             nums.append(float(t))
         if t == ')':
             while ops and ops[-1] != '(':
@@ -66,7 +65,6 @@ def execution(token):
                 nums.append(calculate(a, b, op))
             ops.append(t)
         i += 1
-
     while ops:
         b = nums.pop()
         a = nums.pop()
